@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <title>Real Estate Investing</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/coin.png">
+
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light px-4">
+            <a href="0. index.html"><img class="grey ml-4 logoArrange" src="img/Real-Estate-Investment-PNG.png" alt="Real Estate Investing logo"></a>
+            <a class="navbar-brand ml-2 grey" href="0. index.html"><span class="front_t">REAL ESTATE</span> <span class="dash">INVESTING</span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"></button>
+                <div class="collapse navbar-collapse order-3" id="navbarNavDropdown">
+                    <ul class="nav navbar-nav ml-auto px-4">
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="1. Background.html">Background</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="2. Construction Process.html">Construction Process</a>
+                        </li>
+                        <li class="nav-item dropdown mx-4">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Sets</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="3. House_Price_Data_Set.html">House Price Data</a>
+                                        <a class="dropdown-item" href="4. Rental_Price_Data_Set.html">Rent-to-Price Data</a>
+                                    </div>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+
+        <!-- Convert CSV to HTML Table here - Note: if convert CSV to JSON and do foorloop for display, it will take awhile to load -->
+        <!-- Reference: http://convertcsv.com/csv-to-html.htm -->
+
+        <!-- Banner -->
+        <div class="bannerRentPrice container-fluid text-center">
+            <h1>Apartment.com Data Set as of 12/31/2019</h1>
+        </div>
+        
+        <div class="container">
+            <div class="row margin-top-50">
+              <div class="col-md-2">
+                <aside class="filter">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Filter Search</div>
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <label for="date-search">Enter a Date</label>
+                            <input class="form-control" id="date-search" type="text" placeholder="1/11/2011">
+                          </li>
+                          <li class="list-group-item">
+                            <label for="city-search">Enter a City</label>
+                            <input class="form-control" id="city-search" type="text" placeholder="roswell">
+                          </li>
+                          <li class="list-group-item">
+                            <label for="state-search">Enter a State</label>
+                            <input class="form-control" id="state-search" type="text" placeholder="ca">
+                          </li>
+                          <li class="list-group-item">
+                            <label for="state-search">Select a Property Type</label>
+                            <select id="rentType-search">
+                          <option default value=" ">all</option>
+                        </select>
+                          </li>
+                          <li class="list-group-item">
+                            <label for="shape-search">Select a Shape</label>
+                            <select id="shape-search">
+                          <option default value=" ">all</option>
+                        </select>
+                          </li>
+                          <li class="list-group-item">
+                            <label for="num-results">Results Per Page</label>
+                            <select id="num-results">
+                          <option default value="100">100</option>
+                          <option value="50">50</option>
+                          <option value="25">25</option>
+                        </select>
+                          </li>
+                          <li class="list-group-item">
+                            <button id="filter-submit" class="btn btn-success">Update Search</button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+              
+              <div class="col-md-10">
+                <div id="table-area" class="">
+                  <h1 class="text-center loader">Loading...</h1>
+                  <table id="apartment-table" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th class="table-head">Date</th>
+                        <th class="table-head">City</th>
+                        <th class="table-head">State</th>
+                        <th class="table-head">Country</th>
+                        <th class="table-head">Shape</th>
+                        <th class="table-head">Duration (Minutes)</th>
+                        <th class="table-head">Comments</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2 text-center pagination-container">
+                <ul class="pagination">
+                </ul>
+              </div>
+            </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="js/Q4-2019_Apartment_merged_data.js"></script>
+        <script src="js/apartmentApp.js"></script>
+    </body>
+</html>
